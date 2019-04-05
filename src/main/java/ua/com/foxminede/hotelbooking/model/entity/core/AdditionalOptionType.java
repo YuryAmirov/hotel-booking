@@ -1,4 +1,4 @@
-package ua.com.foxminede.hotelbooking.entity.core;
+package ua.com.foxminede.hotelbooking.model.entity.core;
 
 public enum AdditionalOptionType {
     CLEANING,

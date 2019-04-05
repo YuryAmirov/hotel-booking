@@ -1,24 +1,19 @@
-package ua.com.foxminede.hotelbooking.entity;
+package ua.com.foxminede.hotelbooking.model.entity;
 
-import com.google.common.base.MoreObjects;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import ua.com.foxminede.hotelbooking.entity.core.AdditionalOptionType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import static com.google.common.base.MoreObjects.ToStringHelper;
 import static com.google.common.base.MoreObjects.toStringHelper;
 
 @Data
@@ -26,37 +21,41 @@ import static com.google.common.base.MoreObjects.toStringHelper;
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = {"id"})
 @Entity
-@Table(name = "additional_options")
-public class AdditionalOption {
+@Table(name = "users")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name="room_id", nullable=false)
-    private Room room;
+    @NotNull
+    @Column(name = "first_name")
+    private String firstName;
+
+    @NotNull
+    @Column(name = "last_name")
+    private String lastName;
 
     @NotNull
     @Column
-    @Enumerated(value = EnumType.STRING)
-    private AdditionalOptionType type;
+    private String email;
 
     @NotNull
-    @Column(name = "price")
-    private int pricePerNight;
+    @Column
+    private String password;
 
     @Override
     public String toString() {
         return formToStringHelper().toString();
     }
 
-    private MoreObjects.ToStringHelper formToStringHelper() {
+    private ToStringHelper formToStringHelper() {
         return toStringHelper(this)
                 .add("id:", this.id)
-                .add("room:", this.room)
-                .add("type:", this.type)
-                .add("pricePerNight:", this.pricePerNight)
+                .add("firstName:", this.firstName)
+                .add("lastName:", this.lastName)
+                .add("email:", this.email)
+                .add("password:", this.password)
                 .omitNullValues();
     }
 }
