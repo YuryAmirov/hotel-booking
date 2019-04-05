@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8"/>
     <title>Rooms</title>
 </head>
 <body>
-    <h6>Rooms!!!</h6>
+    <div id="content">
+        <h2>Rooms</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="room : ${rooms}">
+                    <td th:text="${room.number}">Number</td>
+                    <td th:text="${room.category}">Category</td>
+                    <td th:text="${room.pricePerNight}">Price</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
