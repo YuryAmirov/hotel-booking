@@ -9,7 +9,7 @@ CREATE TABLE users(
 
 CREATE TABLE rooms(
   id BIGINT NOT NULL AUTO_INCREMENT,
-  category VARCHAR(50) NOT NULL unique,
+  category VARCHAR(50) NOT NULL,
   number BIGINT NOT NULL,
   price BIGINT NOT NULL,
   PRIMARY KEY (id)
