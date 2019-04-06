@@ -1,4 +1,4 @@
-package ua.com.foxminede.hotelbooking.model.entity.core;
+package ua.com.foxminded.hotelbooking.model.entity.core;
 
 public enum RoomCategory {
     SINGLE,

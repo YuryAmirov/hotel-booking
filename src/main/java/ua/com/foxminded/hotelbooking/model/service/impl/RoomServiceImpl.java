@@ -1,16 +1,14 @@
-package ua.com.foxminede.hotelbooking.model.service.impl;
+package ua.com.foxminded.hotelbooking.model.service.impl;
 
-import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-import ua.com.foxminede.hotelbooking.model.entity.Room;
-import ua.com.foxminede.hotelbooking.model.repository.RoomRepository;
-import ua.com.foxminede.hotelbooking.model.service.RoomService;
+import ua.com.foxminded.hotelbooking.model.entity.Room;
+import ua.com.foxminded.hotelbooking.model.repository.RoomRepository;
+import ua.com.foxminded.hotelbooking.model.service.RoomService;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Log4j2
 public class RoomServiceImpl implements RoomService {
 
     private final RoomRepository roomRepository;

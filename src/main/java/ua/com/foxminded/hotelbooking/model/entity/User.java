@@ -1,4 +1,4 @@
-package ua.com.foxminede.hotelbooking.model.entity;
+package ua.com.foxminded.hotelbooking.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Available rooms</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sidebar-style.css}"/>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+</head>
+<body>
+<div id="content">
+    <h2>Available rooms</h2>
+    <div class="sidebar">
+        <h4>Category</h4>
+        <form th:action="@{/rooms/category}" method="get">
+            <select class="form-control" name="category">
+                <option th:value="null" th:text="ALL"></option>
+                <option th:each="category : ${categories}"
+                        th:value="${category}"
+                        th:text="${category}"
+                        th:selected="${category == categoryFromLastFilter}">
+                    Status
+                </option>
+            </select>
+            <input type="submit" th:value="Submit"/>
+        </form>
+    </div>
+
+    <div class="main">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Number</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="room : ${rooms}">
+                <td th:text="${room.number}">Number</td>
+                <td th:text="${room.category}">Category</td>
+                <td th:text="${room.pricePerNight}">Price</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

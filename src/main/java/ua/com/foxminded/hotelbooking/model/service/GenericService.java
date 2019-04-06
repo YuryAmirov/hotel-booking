@@ -1,4 +1,4 @@
-package ua.com.foxminede.hotelbooking.model.service;
+package ua.com.foxminded.hotelbooking.model.service;
 
 import java.util.List;
 import java.util.Optional;

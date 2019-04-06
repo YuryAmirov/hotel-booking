@@ -1,4 +1,4 @@
-package ua.com.foxminede.hotelbooking;
+package ua.com.foxminded.hotelbooking;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
