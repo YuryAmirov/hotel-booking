@@ -1,5 +1,6 @@
 package ua.com.foxminded.hotelbooking.model.controller;
 
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import ua.com.foxminded.hotelbooking.model.entity.User;
 import ua.com.foxminded.hotelbooking.model.service.UserService;
 
 import javax.persistence.EntityExistsException;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/users")
@@ -35,7 +37,14 @@ public class UserController {
 
     @PostMapping("/registration")
     public ModelAndView doRegistration(ModelAndView modelAndView,
-                                       @ModelAttribute(USER_ATTRIBUTE_NAME) User user) {
+                                       @ModelAttribute(USER_ATTRIBUTE_NAME)
+                                       @Valid User user,
+                                       BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            System.out.println("Registration form has validation errors: " + bindingResult);
+            return modelAndView;
+        }
         try {
             userService.create(user);
             modelAndView.addObject(SUCCESS_MESSAGES_ATTRIBUTE_NAME, "New user registered successfully!");
