@@ -68,10 +68,9 @@ public class RoomController {
 
     @GetMapping("/category")
     public ModelAndView getByCategory(ModelAndView modelAndView, RoomCategory category) {
-        List<Room> rooms = roomService.getAll();
+        List<Room> rooms = category == null? roomService.getAll() : roomService.getByCategory(category);
 
         List<RoomCategory> categories = new ArrayList<>(EnumSet.allOf(RoomCategory.class));
-        filterByCategory(rooms, category);
 
         modelAndView.addObject(ROOM_CATEGORIES_ATTRIBUTE_NAME, categories);
         modelAndView.addObject(CATEGORY_FROM_LAST_FILTER_ATTRIBUTE_NAME, category);
@@ -79,12 +78,6 @@ public class RoomController {
         modelAndView.addObject(CATEGORY_ATTRIBUTE_NAME, category);
 
         return modelAndView;
-    }
-
-    private void filterByCategory(List<Room> rooms, RoomCategory category) {
-        if(category != null) {
-            rooms.removeIf(room -> !room.getCategory().equals(category));
-        }
     }
 
     private void filterByPeriod(List<Booking> bookings, String startDateString, String endDateString) {

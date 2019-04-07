@@ -2,6 +2,7 @@ package ua.com.foxminded.hotelbooking.model.service.impl;
 
 import org.springframework.stereotype.Service;
 import ua.com.foxminded.hotelbooking.model.entity.Room;
+import ua.com.foxminded.hotelbooking.model.entity.core.RoomCategory;
 import ua.com.foxminded.hotelbooking.model.repository.RoomRepository;
 import ua.com.foxminded.hotelbooking.model.service.RoomService;
 
@@ -45,5 +46,10 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public boolean isExisting(long id) {
         return false;
+    }
+
+    @Override
+    public List<Room> getByCategory(RoomCategory category) {
+        return roomRepository.findByCategory(category);
     }
 }
