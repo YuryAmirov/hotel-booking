@@ -12,7 +12,12 @@
         <h2>Available rooms</h2>
         <div class="sidebar">
             <h4>Period</h4>
-            <form th:action="@{/rooms/available}" method="get">
+            <form th:if="${chooseRoom} or ${enterDates}" if th:action="@{/bookings/choose-room}" method="get">
+                <p><input type="date" class="form-control" name="startDate" th:value="${startDate}"/></p>
+                <p><input type="date" class="form-control" name="endDate" th:value="${endDate}"/></p>
+                <input type="submit" th:value="Submit"/>
+            </form>
+            <form th:if="!${chooseRoom} and !${enterDates}" th:action="@{/rooms/available}" method="get">
                 <p><input type="date" class="form-control" name="startDate" th:value="${startDate}"/></p>
                 <p><input type="date" class="form-control" name="endDate" th:value="${endDate}"/></p>
                 <input type="submit" th:value="Submit"/>
@@ -20,23 +25,31 @@
         </div>
 
         <div class="main">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Number</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                </tr>
-                </thead>
+            <p th:if="${enterDates}">Enter dates range first!</p>
+            <form th:action="@{/bookings/create}" method="get">
+                <table class="table" th:if="!${enterDates}">
+                    <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th th:if="${chooseRoom}"> Choose room</th>
+                    </tr>
+                    </thead>
 
-                <tbody>
-                <tr th:each="room : ${rooms}">
-                    <td th:text="${room.number}">Number</td>
-                    <td th:text="${room.category}">Category</td>
-                    <td th:text="${room.pricePerNight}">Price</td>
-                </tr>
-                </tbody>
-            </table>
+                    <tbody>
+                    <tr th:each="room : ${rooms}">
+                        <td th:text="${room.number}">Number</td>
+                        <td th:text="${room.category}">Category</td>
+                        <td th:text="${room.pricePerNight}">Price</td>
+                        <td th:if="${chooseRoom}"><input class="radio" th:required="required" name="roomId" type="radio"
+                                   th:value="${room.id}"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <input th:if="${chooseRoom}" class="btn btn-light center-block" type="submit" th:value="Submit"/>
+            </form>
         </div>
     </div>
 </body>
