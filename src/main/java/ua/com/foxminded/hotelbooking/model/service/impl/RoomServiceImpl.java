@@ -35,7 +35,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Optional<Room> getById(long id) {
-        return Optional.empty();
+        return roomRepository.findById(id);
     }
 
     @Override

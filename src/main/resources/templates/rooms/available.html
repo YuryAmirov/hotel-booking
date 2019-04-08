@@ -48,6 +48,8 @@
                     </tbody>
                 </table>
                 <br/>
+                <input name="startDate" type="hidden" th:value="${startDate}"/>
+                <input name="endDate" type="hidden" th:value="${endDate}"/>
                 <input th:if="${chooseRoom}" class="btn btn-light center-block" type="submit" th:value="Submit"/>
             </form>
         </div>
