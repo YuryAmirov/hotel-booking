@@ -18,8 +18,11 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking create(Booking object) {
-        return null;
+    public Booking create(Booking booking) {
+        if (booking.getId() == 0) {
+            return bookingRepository.saveAndFlush(booking);
+        }
+        return booking;
     }
 
     @Override

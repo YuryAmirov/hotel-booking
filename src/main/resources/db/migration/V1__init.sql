@@ -18,7 +18,7 @@ CREATE TABLE rooms(
 CREATE TABLE additional_options(
   id BIGINT NOT NULL AUTO_INCREMENT,
   room_id BIGINT,
-  type VARCHAR(50) NOT NULL unique,
+  type VARCHAR(50) NOT NULL,
   price BIGINT NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_additional_options_rooms FOREIGN KEY (room_id) REFERENCES rooms (id)

@@ -8,44 +8,64 @@
 </head>
 <body>
     <div id="content">
+        <div class="col-md-6 col-md-offset-3">
         <h2>Booking details</h2>
-        <div th:if="${errorMessage}" class="alert alert-danger" id="messageErrorRegister"
+        <div th:if="${noRoomMessage}" class="alert alert-danger" id="messageErrorRegister"
              role="alert">
-            <p th:text="${errorMessage}">...</p>
+            <p th:text="${noRoomMessage}">...</p>
         </div>
-        <form th:if="!${errorMessage}" th:action="@{/bookings/create}" method="post">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Room number</th>
-                    <th>Room category</th>
-                    <th>From</th>
-                    <th>Till</th>
-                    <th>Price</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                    <td th:text="${room.number}">Number</td>
-                    <td th:text="${room.category}">Category</td>
-                    <td th:text="${startDate}">Start date</td>
-                    <td th:text="${endDate}">End date</td>
-                    <td th:text="${price}">Price</td>
-                </tr>
-                </tbody>
-            </table>
-            <br/>
+        <br th:if="!${noRoomMessage}">
+            <div th:if="${successMessage}" class="alert alert-success" id="messageSuccess"
+                 role="alert">
+                <p th:text="${successMessage}">...</p>
+            </div>
+            <div th:if="${errorMessage}" class="alert alert-danger" id="messageError"
+                 role="alert">
+                <p th:text="${errorMessage}">...</p>
+            </div>
+            <label for="number">Room number</label>
+            <div class="form-group">
+                <input type="text" name="number" id="number"
+                       class="form-control" th:value="${room.number}"/>
+            </div>
+            <label for="category">Room category</label>
+            <div class="form-group">
+                <input type="text" name="category" id="category"
+                       class="form-control" th:value="${room.category}"/>
+            </div>
+            <label for="from">From</label>
+            <div class="form-group">
+                <input type="text" name="from" id="from"
+                       class="form-control" th:value="${startDate}"/>
+            </div>
+            <label for="till">Until</label>
+            <div class="form-group">
+                <input type="text" name="till" id="till"
+                       class="form-control" th:value="${endDate}"/>
+            </div>
+            <label for="price">Price</label>
+            <div class="form-group">
+                <input type="text" name="price" id="price"
+                       class="form-control" th:value="${price}"/>
+            </div>
+            <h2>For user</h2>
+            <form th:action="@{/bookings/create}" th:object="${user}" method="post">
             <div class="form-group">
                 <input type="email" name="email" id="email"
                        class="form-control"
-                       placeholder="Email" th:value="${userEmail}"/>
+                       placeholder="Email" th:value="*{email}"/>
             </div>
             <div class="form-group">
                 <input type="password" name="password" id="password"
-                       class="form-control" placeholder="Password" th:value="${userPassword}"/>
+                       class="form-control" placeholder="Password" th:value="*{password}"/>
             </div>
-            <input class="btn btn-light center-block" type="submit" th:value="Submit"/>
+                <input name="roomId" type="hidden" th:value="${room.id}"/>
+                <input name="startDate" type="hidden" th:value="${startDate}"/>
+                <input name="endDate" type="hidden" th:value="${endDate}"/>
+                <input class="btn btn-light center-block" type="submit" th:value="Submit"/>
         </form>
+        </div>
+        </div>
     </div>
 </body>
 </html>

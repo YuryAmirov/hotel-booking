@@ -16,6 +16,8 @@
                     <th>Number</th>
                     <th>Category</th>
                     <th>Price</th>
+                    <th>Breakfast</th>
+                    <th>Cleaning</th>
                 </tr>
             </thead>
 
@@ -24,6 +26,11 @@
                     <td th:text="${room.number}">Number</td>
                     <td th:text="${room.category}">Category</td>
                     <td th:text="${room.pricePerNight}">Price</td>
+                    <td th:if="${#lists.size(room.additionalOptions) == 2 or (#lists.size(room.additionalOptions) == 1 and room.additionalOptions.toArray()[0].getType().toString() == 'BREAKFAST')}">+</td>
+                    <td th:unless="${#lists.size(room.additionalOptions) == 2 or (#lists.size(room.additionalOptions) == 1 and room.additionalOptions.toArray()[0].getType().toString() == 'BREAKFAST')}"> </td>
+                    <td th:if="${#lists.size(room.additionalOptions) == 2 or (#lists.size(room.additionalOptions) == 1 and room.additionalOptions.toArray()[0].getType().toString() == 'CLEANING')}">+</td>
+                    <td th:unless="${#lists.size(room.additionalOptions) == 2 or (#lists.size(room.additionalOptions) == 1 and room.additionalOptions.toArray()[0].getType().toString() == 'CLEANING')}"> </td>
+
                 </tr>
             </tbody>
         </table>
