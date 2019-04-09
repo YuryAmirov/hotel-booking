@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Bookings</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+</head>
+<body>
+<div id="content">
+    <h2>Bookings</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Room number</th>
+            <th>User email</th>
+            <th>From</th>
+            <th>Untill</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="booking : ${bookings}">
+            <td th:text="${booking.room.number}">Number</td>
+            <td th:text="${booking.user.email}">Email</td>
+            <td th:text="${booking.period.startDate}">Start Date</td>
+            <td th:text="${booking.period.endDate}">End Date</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

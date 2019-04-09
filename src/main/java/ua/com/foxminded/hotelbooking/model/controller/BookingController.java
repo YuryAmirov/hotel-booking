@@ -19,6 +19,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -43,6 +44,8 @@ public class BookingController {
 
     private static final String ERROR_MESSAGE_ATTRIBUTE_NAME = "errorMessage";
 
+    private static final String ROOMS_ATTRIBUTE_NAME = "bookings";
+
     private RoomController roomController;
 
     private RoomService roomService;
@@ -59,6 +62,14 @@ public class BookingController {
         this.roomService = roomService;
         this.userService = userService;
         this.bookingService = bookingService;
+    }
+
+    @GetMapping("/all")
+    public ModelAndView getAllBookings() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<Booking> bookings = bookingService.getAll();
+        modelAndView.addObject(ROOMS_ATTRIBUTE_NAME, bookings);
+        return modelAndView;
     }
 
     @GetMapping("/choose-room")
@@ -99,8 +110,9 @@ public class BookingController {
         }
 
         Period period = generatePeriod(startDate, endDate);
+        Room room = roomService.getById(roomId).get();
         Booking booking = new Booking();
-        booking.setRoom(roomService.getById(roomId).get());
+        booking.setRoom(room);
         booking.setUser(userActual.get());
         booking.setPeriod(period);
 
