@@ -2,6 +2,7 @@ package ua.com.foxminded.hotelbooking.model.service.impl;
 
 import org.springframework.stereotype.Service;
 import ua.com.foxminded.hotelbooking.model.entity.Booking;
+import ua.com.foxminded.hotelbooking.model.entity.User;
 import ua.com.foxminded.hotelbooking.model.repository.BookingRepository;
 import ua.com.foxminded.hotelbooking.model.service.BookingService;
 
@@ -15,6 +16,11 @@ public class BookingServiceImpl implements BookingService {
 
     public BookingServiceImpl(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
+    }
+
+    @Override
+    public List<Booking> getByUser(User user) {
+        return bookingRepository.findAllByUser(user);
     }
 
     @Override

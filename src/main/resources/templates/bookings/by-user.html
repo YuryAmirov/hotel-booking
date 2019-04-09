@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Bookings</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sidebar-style.css}"/>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+
+    <div id="content">
+        <h2>Bookings of user</h2>
+        <div class="sidebar">
+            <h4>User email</h4>
+            <form th:action="@{/bookings/by-user}" method="get">
+                <p><input type="text" class="form-control" name="userEmail" th:value="${userEmail}"/></p>
+                <input type="submit" th:value="Submit"/>
+            </form>
+        </div>
+        <div class="main">
+            <p th:if="${enterEmail}">Enter user email first!</p>
+            <div th:if="${errorMessage}" class="alert alert-danger" id="messageError"
+                 role="alert">
+                <p th:text="${errorMessage}">...</p>
+            </div>
+            <table class="table" th:if="!${enterEmail} and !${errorMessage}">
+                <thead>
+                <tr>
+                    <th>Room number</th>
+                    <th>User email</th>
+                    <th>From</th>
+                    <th>Until</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="booking : ${bookings}">
+                    <td th:text="${booking.room.number}">Number</td>
+                    <td th:text="${booking.user.email}">Email</td>
+                    <td th:text="${booking.period.startDate}">Start Date</td>
+                    <td th:text="${booking.period.endDate}">End Date</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

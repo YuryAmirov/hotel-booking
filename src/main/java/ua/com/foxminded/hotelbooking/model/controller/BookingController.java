@@ -44,7 +44,13 @@ public class BookingController {
 
     private static final String ERROR_MESSAGE_ATTRIBUTE_NAME = "errorMessage";
 
-    private static final String ROOMS_ATTRIBUTE_NAME = "bookings";
+    private static final String BOOKINGS_ATTRIBUTE_NAME = "bookings";
+
+    private static final String EMAIL_FROM_LAST_ENTER_ATTRIBUTE_NAME = "emailFromLastEnter";
+
+    private static final String USER_EMAIL_ATTRIBUTE_NAME = "userEmail";
+
+    private static final String ENTER_EMAIL_ATTRIBUTE_NAME = "enterEmail";
 
     private RoomController roomController;
 
@@ -68,7 +74,28 @@ public class BookingController {
     public ModelAndView getAllBookings() {
         ModelAndView modelAndView = new ModelAndView();
         List<Booking> bookings = bookingService.getAll();
-        modelAndView.addObject(ROOMS_ATTRIBUTE_NAME, bookings);
+        modelAndView.addObject(BOOKINGS_ATTRIBUTE_NAME, bookings);
+        return modelAndView;
+    }
+
+    @GetMapping("/by-user")
+    public ModelAndView getByUser(ModelAndView modelAndView, String userEmail) {
+        if(userEmail == null) {
+            return modelAndView.addObject(ENTER_EMAIL_ATTRIBUTE_NAME, "Enter user email first!");
+        }
+
+        Optional<User> user = userService.getByEmail(userEmail);
+
+        if(!user.isPresent()) {
+            return modelAndView.addObject(ERROR_MESSAGE_ATTRIBUTE_NAME, "Incorrect email!");
+        }
+
+        List<Booking> bookings = bookingService.getByUser(user.get());
+
+        modelAndView.addObject(EMAIL_FROM_LAST_ENTER_ATTRIBUTE_NAME, userEmail);
+        modelAndView.addObject(USER_EMAIL_ATTRIBUTE_NAME, userEmail);
+        modelAndView.addObject(BOOKINGS_ATTRIBUTE_NAME, bookings);
+
         return modelAndView;
     }
 

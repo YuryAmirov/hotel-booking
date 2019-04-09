@@ -1,0 +1,21 @@
+<div th:fragment="header" xmlns:th="http://www.thymeleaf.org">
+    <div class="navbar-wrapper">
+        <div class="container-fluid">
+            <nav class="navbar navbar-fixed-top">
+                <div class="container">
+                    <ul class="nav navbar-nav pull-right">
+
+                        <li class=""><a th:href="@{/bookings/all}">All bookings</a></li>
+                        <li class=""><a th:href="@{/bookings/by-user}">Bookings by user</a></li>
+                        <li class=""><a th:href="@{/bookings/choose-room}">Book a room</a></li>
+                        <li class=""><a th:href="@{/rooms/all}">All rooms</a></li>
+                        <li class=""><a th:href="@{/rooms/available}">Available rooms</a></li>
+                        <li class=""><a th:href="@{/rooms/category}">Rooms by category</a></li>
+                        <li class=""><a th:href="@{/users/registration}" >Register</a></li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
