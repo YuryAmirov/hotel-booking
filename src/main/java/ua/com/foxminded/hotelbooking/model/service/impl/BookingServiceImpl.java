@@ -32,27 +32,27 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public boolean update(Booking object) {
-        return false;
-    }
-
-    @Override
     public List<Booking> getAll() {
         return bookingRepository.findAll();
     }
 
     @Override
+    public boolean update(Booking object) {
+        throw new UnsupportedOperationException("Update booking is not supported yet.");
+    }
+
+    @Override
     public Optional<Booking> getById(long id) {
-        return Optional.empty();
+        throw new UnsupportedOperationException("Get booking by id is not supported yet.");
     }
 
     @Override
     public boolean delete(long id) {
-        return false;
+        throw new UnsupportedOperationException("Delete booking is not supported yet.");
     }
 
     @Override
     public boolean isExisting(long id) {
-        return false;
+        throw new UnsupportedOperationException("Is existing by id for booking is not supported yet.");
     }
 }

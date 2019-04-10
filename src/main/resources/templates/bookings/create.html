@@ -16,7 +16,7 @@
              role="alert">
             <p th:text="${noRoomMessage}">...</p>
         </div>
-        <br th:if="!${noRoomMessage}">
+        <div th:if="!${noRoomMessage}">
             <div th:if="${successMessage}" class="alert alert-success" id="messageSuccess"
                  role="alert">
                 <p th:text="${successMessage}">...</p>

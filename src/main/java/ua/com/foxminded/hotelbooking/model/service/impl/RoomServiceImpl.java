@@ -19,16 +19,6 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Room create(Room object) {
-        return null;
-    }
-
-    @Override
-    public boolean update(Room object) {
-        return false;
-    }
-
-    @Override
     public List<Room> getAll() {
         return roomRepository.findAll();
     }
@@ -39,17 +29,27 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public List<Room> getByCategory(RoomCategory category) {
+        return roomRepository.findByCategory(category);
+    }
+
+    @Override
     public boolean delete(long id) {
-        return false;
+        throw new UnsupportedOperationException("Delete room is not supported yet.");
+    }
+
+    @Override
+    public Room create(Room object) {
+        throw new UnsupportedOperationException("Create room is not supported yet.");
+    }
+
+    @Override
+    public boolean update(Room object) {
+        throw new UnsupportedOperationException("Update room is not supported yet.");
     }
 
     @Override
     public boolean isExisting(long id) {
-        return false;
-    }
-
-    @Override
-    public List<Room> getByCategory(RoomCategory category) {
-        return roomRepository.findByCategory(category);
+        throw new UnsupportedOperationException("Is room existing is not supported yet.");
     }
 }

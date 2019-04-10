@@ -28,31 +28,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean update(User object) {
-        return false;
-    }
-
-    @Override
-    public List<User> getAll() {
-        return null;
-    }
-
-    @Override
-    public Optional<User> getById(long id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public boolean delete(long id) {
-        return false;
-    }
-
-    @Override
-    public boolean isExisting(long id) {
-        return false;
-    }
-
-    @Override
     public Optional<User> getByEmail(String email) {
         return userRepository.findByEmail(email);
     }
@@ -60,5 +35,30 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isExisting(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean update(User object) {
+        throw new UnsupportedOperationException("Update user is not supported yet.");
+    }
+
+    @Override
+    public List<User> getAll() {
+        throw new UnsupportedOperationException("Get all users is not supported yet.");
+    }
+
+    @Override
+    public Optional<User> getById(long id) {
+        throw new UnsupportedOperationException("Get by id for user is not supported yet.");
+    }
+
+    @Override
+    public boolean delete(long id) {
+        throw new UnsupportedOperationException("Delete user is not supported yet.");
+    }
+
+    @Override
+    public boolean isExisting(long id) {
+        throw new UnsupportedOperationException("Is user existing is not supported yet.");
     }
 }

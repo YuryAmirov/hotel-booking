@@ -130,6 +130,11 @@ public class BookingController {
                                         Long roomId,
                                         @ModelAttribute("user") User user) {
         ModelAndView modelAndView = getPopulatedModelAndView(startDate, endDate, roomId);
+        Optional<Room> room = roomService.getById(roomId);
+        if(!room.isPresent()) {
+            return modelAndView;
+        }
+
         Optional<User> userActual = userService.getByEmail(user.getEmail());
 
         if(!userActual.isPresent() || !userActual.get().getPassword().equals(user.getPassword())) {
@@ -137,9 +142,8 @@ public class BookingController {
         }
 
         Period period = generatePeriod(startDate, endDate);
-        Room room = roomService.getById(roomId).get();
         Booking booking = new Booking();
-        booking.setRoom(room);
+        booking.setRoom(room.get());
         booking.setUser(userActual.get());
         booking.setPeriod(period);
 
@@ -185,7 +189,7 @@ public class BookingController {
     }
 
     private int calculatePrice(Room room, String startDate, String endDate) {
-        int numberOfDays = calculatenumberOfDays(startDate, endDate);
+        int numberOfDays = calculateNumberOfDays(startDate, endDate);
         int price = room.getPricePerNight();
         for(AdditionalOption option : room.getAdditionalOptions()) {
             price += option.getPricePerNight();
@@ -197,7 +201,7 @@ public class BookingController {
         return startDateString != null && !startDateString.equals("") && endDateString != null && !endDateString.equals("");
     }
 
-    private int calculatenumberOfDays(String startDateString, String endDateString) {
+    private int calculateNumberOfDays(String startDateString, String endDateString) {
         LocalDate startDate = LocalDate.parse(startDateString);
         LocalDate endDate = LocalDate.parse(endDateString);
 
