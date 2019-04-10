@@ -1,8 +1,8 @@
 # Hotel Booking Rest Application
 
-##Endpoints list:##
+## Endpoints list:
 
-*http://localhost:8080/ : Start page
+* http://localhost:8080/ : Start page
 *http://localhost:8080/bookings/all : View all bookings
 *http://localhost:8080/bookings/by-user : View bookings of an user
 *http://localhost:8080/bookings/choose-room : Choose avalable room to book
