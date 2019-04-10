@@ -13,7 +13,7 @@
 * http://localhost:8080/users/registration : Create a new user
 * http://localhost:8080/h2-console : h2 console
 
-## H2 Console creadentials:
+## H2 Console credentials:
 * JDBC URL : jdbc:h2:mem:HotelBookingDB
 * User name : user
 * Password : pwd
